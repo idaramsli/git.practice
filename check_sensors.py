@@ -5,7 +5,7 @@ import json
 
 
 with open("config.yml") as f:
-    over_due = yaml.safe_load(f) 
+    over_due = yaml.safe_load(f) #leser inn fra yaml-fil og gjør det leselig for python
     tekst = f.read()
 print(tekst)
 
@@ -25,8 +25,11 @@ print(data)
 max_days = over_due["max_days_since_calibration"]
 
 print("These are over due for a new calibration!")
-data = data[data["days_since_calibration"]> max_days ]
-print(data)
+over = data[data["days_since_calibration"]> max_days ]
+print(over)
+
+
+over.to_json("overdue_sensors.json", orient = "records", indent = 2)
 
 
 
